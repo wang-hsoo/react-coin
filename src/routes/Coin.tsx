@@ -156,9 +156,7 @@ function Coin(){
   const {isLoading: tickersLoading, data: tickerData} = useQuery<PriceData>(
     ["tickers",coinId], 
     () => fetchCoinTickers(coinId),
-    {
-      refetchInterval: 5000,
-    }
+    
     );
 
 
@@ -235,7 +233,7 @@ function Coin(){
 
           <Switch>
             <Route path={`/${coinId}/price`}>
-                <Price />
+                <Price coinId ={coinId} />
             </Route>
             <Route path={`/${coinId}/chart`}>
                 <Chart coinId ={coinId} />
