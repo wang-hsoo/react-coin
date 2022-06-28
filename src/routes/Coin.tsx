@@ -147,6 +147,8 @@ interface PriceData{
 
 
 
+
+
 function Coin(){ 
   const {state} = useLocation<RouteState>();
   const {coinId} = useParams<RouteParams>();

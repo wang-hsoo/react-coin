@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import  Router  from "./Router";
 import styled, { createGlobalStyle, keyframes, ThemeConsumer } from "styled-components";
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'styled-components';
+import {darkTheme, lightTheme } from './theme';
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atom";
 
 
 
@@ -67,13 +71,15 @@ a{
 `;
 
 function App() {
-  
+	const isDark = useRecoilValue(isDarkAtom);
 
   return (
     <>
-      <GlobalStyle />
-      <Router />
-	  <ReactQueryDevtools initialIsOpen={true} />
+		<ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+			<GlobalStyle />
+			<Router />
+			<ReactQueryDevtools initialIsOpen={true} />
+		</ThemeProvider>
     </>
   );
 }

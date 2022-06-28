@@ -21,10 +21,11 @@ const Header = styled.header`
 const CoinList = styled.ul``;
 
 const Coin = styled.li`
-    background-color: white;
-    color: ${props => props.theme.bgColor};
+    background-color: ${props => props.theme.cardBgColor};
+    color: ${props => props.theme.textColor};
     margin-bottom: 10px;
     border-radius: 15px;
+    border: 1px solid white;
     a{
         display: flex;
         align-items: center;
@@ -64,6 +65,8 @@ interface CoinInterface{
 }
 
 
+
+
 function Coins(){
     // const [coins, setCoins] = useState<CoinInterface[]>([]);
     // const [loading, setLoading] = useState(true);
@@ -86,6 +89,7 @@ function Coins(){
             </Helmet>
             <Header>
                 <Title>Coin</Title>
+                <button>Tooggle Dark Mode</button>
             </Header>
             {isLoading ?  (
                 <Loader>Loading...</Loader>
