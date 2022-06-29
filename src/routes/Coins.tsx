@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { isDarkAtom } from "../atom";
 
 const Container = styled.div`
     padding : 0 20px;
@@ -66,7 +68,6 @@ interface CoinInterface{
 
 
 
-
 function Coins(){
     // const [coins, setCoins] = useState<CoinInterface[]>([]);
     // const [loading, setLoading] = useState(true);
@@ -81,6 +82,8 @@ function Coins(){
     // }, [])
 
     const {isLoading, data} = useQuery<CoinInterface[]>("allCoins", fetchCoins)
+    const setDartkAtom = useSetRecoilState(isDarkAtom);
+    const toggleDarkAtom = () => setDartkAtom((prev) => !prev);
 
     return(
         <Container>
@@ -89,7 +92,7 @@ function Coins(){
             </Helmet>
             <Header>
                 <Title>Coin</Title>
-                <button>Tooggle Dark Mode</button>
+                <button onClick={toggleDarkAtom}>Tooggle Mode</button>
             </Header>
             {isLoading ?  (
                 <Loader>Loading...</Loader>
