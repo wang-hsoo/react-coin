@@ -46,6 +46,7 @@ const PriceLi = styled.li`
 `;
 
 function Price({coinId}: PiceProps){
+    //코인 가격 기록
     const {isLoading, data} = useQuery<PiceInfo[]>(["price", coinId],
     () => fetchCoinHistory(coinId));
 

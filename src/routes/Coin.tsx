@@ -154,13 +154,14 @@ function Coin(){
   const {coinId} = useParams<RouteParams>();
   const priceMatch = useRouteMatch("/:coinId/price");
   const chartMatch = useRouteMatch("/:coinId/chart");
+  //해당 코인에 대한 기본 정보
   const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId], () => fetchCoinInfo(coinId));
+  //해당 코인에 대한 가격 정보 ( 고점 저점 . . .)
   const {isLoading: tickersLoading, data: tickerData} = useQuery<PriceData>(
     ["tickers",coinId], 
     () => fetchCoinTickers(coinId),
     
     );
-
 
 
   // const [priceInfo, setPriceInfo] = useState<PriceData>();

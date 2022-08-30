@@ -84,7 +84,7 @@ function Coins(){
     const {isLoading, data} = useQuery<CoinInterface[]>("allCoins", fetchCoins)
     const setDartkAtom = useSetRecoilState(isDarkAtom);
     const toggleDarkAtom = () => setDartkAtom((prev) => !prev);
-
+    console.log(data);
     return(
         <Container>
             <Helmet>
@@ -92,12 +92,14 @@ function Coins(){
             </Helmet>
             <Header>
                 <Title>Coin</Title>
+                {/*버튼클릭시 테마 변경*/} 
                 <button onClick={toggleDarkAtom}>Tooggle Mode</button>
             </Header>
             {isLoading ?  (
                 <Loader>Loading...</Loader>
             ) : (
             <CoinList>
+                {/*100개의 코인정보만 가져옴 */}
                 {data?.slice(0,100).map( (coin) => (
                     <Coin key={coin.id}>
                         <Link to={{

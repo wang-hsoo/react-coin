@@ -24,7 +24,8 @@ function Chart({coinId}: ChartProps){
     const {isLoading, data} = useQuery<IHistorical[]>(
         ["ohlcv", coinId], 
         () => fetchCoinHistory(coinId),
-        {
+        {   
+            //5초마다 데이터를 다시 불러온다
             refetchInterval: 5000,
         }
         );
